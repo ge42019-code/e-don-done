@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E DON DONE — Build Your Meal</title>
+<style>
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#171717}
+header{background:#111;color:#fff;padding:32px 20px;text-align:center}.logo{font-size:36px;font-weight:900}.tag{opacity:.82;margin-top:6px}
+main{max-width:720px;margin:auto;padding:18px}.card{background:#fff;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 3px 15px rgba(0,0,0,.08)}
+h2{margin-top:0}.note{font-size:13px;color:#666;line-height:1.55}
+.portion-option{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid #eee}
+.portion-option label{display:flex;align-items:center;gap:8px;font-weight:650;flex:1}.portion-option input{width:19px;height:19px}
+.portion-controls{display:flex;align-items:center;gap:7px;font-size:12px;white-space:nowrap}
+.portion-controls button{width:27px;height:27px;border:0;border-radius:7px;background:#eee;font-weight:900}
+.qty{min-width:15px;text-align:center;font-weight:800}
+.summary{position:sticky;bottom:0;background:#111;color:#fff;border-radius:16px;padding:16px;margin-top:15px}
+.total{font-size:24px;font-weight:900}.order{display:block;width:100%;border:0;background:#fff;color:#111;text-align:center;border-radius:11px;padding:13px;margin-top:12px;font-weight:900;font-size:16px}
+.zone{line-height:1.8;color:#444}
+</style></head>
+<body><header><div class="logo">E DON DONE</div><div class="tag">Build your meal. We deliver.</div></header>
+<main>
+<div class="card"><h2>🍚 1. Choose your food</h2><p class="note">Prices shown are <b>per portion</b>. One portion means one scoop/serving. Choose the quantity you want.</p>
+<div class="portion-option">
+<label><input type="radio" name="base" value="700" data-name="Amala" onchange="update()"> <span>Amala</span></label>
+<div class="portion-controls"><span>₦700 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="700" data-name="Jollof Rice" onchange="update()"> <span>Jollof Rice</span></label>
+<div class="portion-controls"><span>₦700 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="600" data-name="Smoky Jollof Rice" onchange="update()"> <span>Smoky Jollof Rice</span></label>
+<div class="portion-controls"><span>₦600 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="700" data-name="Native Rice" onchange="update()"> <span>Native Rice</span></label>
+<div class="portion-controls"><span>₦700 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="1300" data-name="Chinese Rice" onchange="update()"> <span>Chinese Rice</span></label>
+<div class="portion-controls"><span>₦1,300 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="1200" data-name="Stir-fried Spaghetti" onchange="update()"> <span>Stir-fried Spaghetti</span></label>
+<div class="portion-controls"><span>₦1,200 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="700" data-name="Abacha" onchange="update()"> <span>Abacha</span></label>
+<div class="portion-controls"><span>₦700 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="1200" data-name="Special Rice" onchange="update()"> <span>Special Rice</span></label>
+<div class="portion-controls"><span>₦1,200 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="800" data-name="Oriental Rice" onchange="update()"> <span>Oriental Rice</span></label>
+<div class="portion-controls"><span>₦800 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="radio" name="base" value="1300" data-name="Colombian Rice" onchange="update()"> <span>Colombian Rice</span></label>
+<div class="portion-controls"><span>₦1,300 / portion</span><button type="button" onclick="changeQty('baseQty',-1)">−</button><span id="baseQty">1</span><button type="button" onclick="changeQty('baseQty',1)">+</button></div>
+</div></div>
+<div class="card"><h2>🍗 2. Choose your protein & extras</h2><p class="note">Prices shown are <b>per portion</b>. Select what you want and adjust the quantity.</p>
+<div class="portion-option">
+<label><input type="checkbox" name="protein" value="500" data-name="Egg" onchange="update()"> <span>Egg</span></label>
+<div class="portion-controls"><span>₦500 / portion</span><button type="button" onclick="changeProteinQty(this,-1)">−</button><span class="qty">1</span><button type="button" onclick="changeProteinQty(this,1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="checkbox" name="protein" value="3000" data-name="Turkey" onchange="update()"> <span>Turkey</span></label>
+<div class="portion-controls"><span>₦3,000 / portion</span><button type="button" onclick="changeProteinQty(this,-1)">−</button><span class="qty">1</span><button type="button" onclick="changeProteinQty(this,1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="checkbox" name="protein" value="3000" data-name="Chicken" onchange="update()"> <span>Chicken</span></label>
+<div class="portion-controls"><span>₦3,000 / portion</span><button type="button" onclick="changeProteinQty(this,-1)">−</button><span class="qty">1</span><button type="button" onclick="changeProteinQty(this,1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="checkbox" name="protein" value="800" data-name="Pomo" onchange="update()"> <span>Pomo</span></label>
+<div class="portion-controls"><span>₦800 / portion</span><button type="button" onclick="changeProteinQty(this,-1)">−</button><span class="qty">1</span><button type="button" onclick="changeProteinQty(this,1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="checkbox" name="protein" value="1500" data-name="Boy Fish" onchange="update()"> <span>Boy Fish</span></label>
+<div class="portion-controls"><span>₦1,500 / portion</span><button type="button" onclick="changeProteinQty(this,-1)">−</button><span class="qty">1</span><button type="button" onclick="changeProteinQty(this,1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="checkbox" name="protein" value="600" data-name="Beef" onchange="update()"> <span>Beef</span></label>
+<div class="portion-controls"><span>₦600 / portion</span><button type="button" onclick="changeProteinQty(this,-1)">−</button><span class="qty">1</span><button type="button" onclick="changeProteinQty(this,1)">+</button></div>
+</div>
+<div class="portion-option">
+<label><input type="checkbox" name="protein" value="800" data-name="Plantain" onchange="update()"> <span>Plantain</span></label>
+<div class="portion-controls"><span>₦800 / portion</span><button type="button" onclick="changeProteinQty(this,-1)">−</button><span class="qty">1</span><button type="button" onclick="changeProteinQty(this,1)">+</button></div>
+</div></div>
+<div class="card"><h2>📍 Delivery</h2><p class="zone">Yaba • Sabo • UNILAG • WAEC Roundabout • Shomolu • Onipanu • Ojuelegba</p><p class="note">Delivery fee is confirmed separately based on your location.</p></div>
+<div class="summary"><div>Your meal total</div><div class="total" id="total">₦0</div><div id="selection" class="note" style="color:#ddd;margin-top:5px">Select your food to begin.</div><button class="order" onclick="sendOrder()">Order on WhatsApp</button></div>
+</main>
+<script>
+let baseQty=1;
+function changeQty(id,d){baseQty=Math.max(1,Math.min(10,baseQty+d));document.getElementById(id).textContent=baseQty;update();}
+function changeProteinQty(btn,d){const row=btn.closest('.portion-option');const q=row.querySelector('.qty');q.textContent=Math.max(1,Math.min(10,Number(q.textContent)+d));const cb=row.querySelector('input');cb.checked=true;update();}
+function money(n){return "₦"+n.toLocaleString("en-NG");}
+function update(){
+ const base=document.querySelector('input[name="base"]:checked');
+ let total=0,names=[];
+ if(base){total+=Number(base.value)*baseQty;names.push(base.dataset.name+" x "+baseQty);}
+ document.querySelectorAll('input[name="protein"]:checked').forEach(cb=>{
+   const row=cb.closest('.portion-option');const q=Number(row.querySelector('.qty').textContent);
+   total+=Number(cb.value)*q;names.push(cb.dataset.name+" x "+q);
+ });
+ document.getElementById('total').textContent=money(total);
+ document.getElementById('selection').textContent=names.length?names.join(" + "):"Select your food to begin.";
+}
+function sendOrder(){
+ const base=document.querySelector('input[name="base"]:checked');
+ if(!base){alert("Please choose your food first.");return;}
+ let total=Number(base.value)*baseQty;
+ let names=[base.dataset.name+" x "+baseQty];
+ document.querySelectorAll('input[name="protein"]:checked').forEach(cb=>{
+  const q=Number(cb.closest('.portion-option').querySelector('.qty').textContent);
+  total+=Number(cb.value)*q;names.push(cb.dataset.name+" x "+q);
+ });
+ const msg="Hello E DON DONE 👋\n\nI want to place an order.\n\nMeal: "+names.join(" + ")+"\nFood total: ₦"+total.toLocaleString("en-NG")+"\n\nDelivery location: \nPhone: ";
+ window.location.href="https://wa.me/2348117498967?text="+encodeURIComponent(msg);
+}
+</script></body></html>
